@@ -3,6 +3,8 @@ import requests
 from datetime import datetime
 import time
 
+token = 'e1c95b4796884a29f6238e60bf647610f9fb5f0d'
+
 # 打卡光盘
 def daka(token):
     headers = {
@@ -134,11 +136,23 @@ def nengliang(token):
     response = requests.post('https://api.clearplate.org.cn/index.php', headers=headers, params=params)
     return response
 
+print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+data = daka(token)
+print(data.text)
+data = feed(token)
+print(data.text)
+data = lingqu(token)
+print(data.text)
+data = hongbao(token)
+print(data.text)
+data = nengliang(token)
+print(data.text)
+
 #data = daka('a5b4a35bd2550e902efb06f32be3b491ffda1786')
 #print(data.text)
 # 每n秒执行一次
-def timer(n,tokens):
-    while True:
+def timer(tokens):
+   # while True:
         print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         data = daka(token)
         print(data.text)
@@ -150,7 +164,7 @@ def timer(n,tokens):
         print(data.text)
         data = nengliang(token)
         print(data.text)
-        time.sleep(n)
+       #  time.sleep(n)
 # 3600*2
-token = 'z8AKPq6HXQ3QB3aQf-Rz5X9WGdKo5uLg'
-timer(600,token)
+
+# timer(600,token)
